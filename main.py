@@ -36,5 +36,5 @@ xdf.reset_index(inplace=True)
 xdf.rename(columns={'index': 'date'}, inplace=True)
 xdf = xdf.pivot(index='date', columns='name', values='value')
 xdf.sort_index(inplace=True)
-xdf.to_csv("rates.csv")
+xdf.to_csv("data.csv")
 
