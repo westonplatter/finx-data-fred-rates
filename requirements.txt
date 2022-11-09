@@ -2,3 +2,4 @@ fredapi
 python-dotenv
 xgboost
 sklearn
+optuna
