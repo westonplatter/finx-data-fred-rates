@@ -1,12 +1,21 @@
+import os
+
 from dotenv import dotenv_values
 from fredapi import Fred
-import glob
 import pandas as pd
 
 
-config = dotenv_values(".env")
-fred = Fred(api_key=config["FRED_API_KEY"])
+def get_fred_api_key() -> str:
+    """Get the FRED API key from the .env file or OS env var"""
+    try:
+        config = dotenv_values(".env")
+        return config["FRED_API_KEY"]
+    except KeyError:
+        print("No .env file found. Trying OS environment variables.")
+        return os.environ["FRED_API_KEY"]
 
+
+fred = Fred(api_key=get_fred_api_key())
 
 series_to_get = [
     ("DGS1MO", "1-Month Treasury Constant Maturity Rate"),
@@ -37,4 +46,3 @@ xdf.rename(columns={'index': 'date'}, inplace=True)
 xdf = xdf.pivot(index='date', columns='name', values='value')
 xdf.sort_index(inplace=True)
 xdf.to_csv("data.csv")
-
