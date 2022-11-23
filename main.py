@@ -25,6 +25,7 @@ series_to_get = [
     ("DGS5", "5-Year Treasury Constant Maturity Rate"),
     ("DGS10", "10-Year Treasury Constant Maturity Rate"),
     ("DGS30", "30-Year Treasury Constant Maturity Rate"),
+    ("DFEDTARU", "Federal Funds Target Range - Upper Limit"),
 ]
 
 all_dfs = []
